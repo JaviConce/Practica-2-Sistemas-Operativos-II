@@ -19,7 +19,6 @@ private:
         std::string later_word;
 
 public:
-    //void saludar();
 
     //Para ordenar al revés, cambiar < por >
     bool operator<(const Word& other) const{
