@@ -1,17 +1,19 @@
-# Laboratorio 1 de SSOO 2
+# Laboratorio 2 de SSOO 2
 
-_Primer entregable del laboratorio de la asignatura Sistemas Operativos 2, por Adrián Carrasco Espinosa_
+_Primer entregable del laboratorio de la asignatura Sistemas Operativos 2, por Adrián Carrasco Espinosa y Javier de la Concepcion Dorado_
 
+
+## Compilacion 
+Para la compilacion utilizaremos un MakeFile, para ello debemos hacer **make all** creando asi todos los archivos necesarios para la ejecucion del programa
 ## Ejecución 🚀
 
-Para ejecutar el ejercicio, primero se debe ejecutar el make. Esto creará varios archivos en la carpeta exec. El principal son manager (proceso principal) y el daemon (que se encargará de la copia de seguridad).
+Para ejecutar el ejercicio, tenemos 4 opciones predeterminadas:
+ * test: en este caso test que es utilizada para en algun cambio del codigo poder probarlo de una forma mas sencilla
+ * solution1: abrira el txt de 17-LEYES-DEL-TRABJO-EN-EQUIPO.txt buscando la palabra **ley** con 100 hilos
+ * solution2: abrira el txt de 21-LEYES-DEL-LIDERAZGO.txt buscando la palabra **ley** con 100 hilos
+ * solution3: abrira el txt de SEAMOS-PERSONAS-DE-INFLUENCIA.txt buscando la palabra **persona** con 100 hilos
 
 
-Los recursos generados (como el **log.txt**, la **copia de seguridad o backup**, y la carpeta **students** con todos los directorios de los alumnos) se guardarán en la carpeta **output**
-
-
-Para poder probar el CONTROL + C, que tiene asignado un manejador, se ha incluido una espera de un segundo (sleep(1)) a los procesos PA, PB y PC.
-
-
-**NOTA:** Es cierto que el header muchilds.h se queda algo corto (sólo dos funciones, que se podrían haber metido en el manager). Esto es porque al igual que el resto de headers, se han hecho con la idea de expandirlos en un futuro. 
+ ## Limpiar
+ Para ello deberemos utilizar el make clean para que se eliminen las carpetas generadas en la etapa de compilacion.
 

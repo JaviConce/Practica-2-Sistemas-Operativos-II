@@ -1,3 +1,15 @@
+/************************************************************************************
+*
+* Nombre: main.cpp
+* 
+* Nombre de Autor/es:Adrian Carrasco Espinosa y Javier de la Concepcion Dorado 
+* 
+* Fecha de creación/actualización: 13/04/2023
+
+* Descripción: Utilizada para la creacion de hilos y su tarea
+
+************************************************************************************/
+
 #include <iostream>
 #include <thread>
 #include <fstream>
@@ -9,6 +21,7 @@
 #include <cctype>
 #include <mutex>
 #include <shared_mutex>
+#include <regex>
 
 #include "../include/word.h"
 #include "../include/myfiles.h"
@@ -18,6 +31,8 @@ void buscarPalabra(std::string ruta, std::string palabra, int linea_inicial, int
 std::vector<Word> words_found;
 std::vector<std::thread> vhilos;
 std::shared_mutex buffer_mutex;
+
+
 
 int main(int argc, char *argv[])
 {
@@ -70,7 +85,22 @@ int main(int argc, char *argv[])
 
 }
 
-// Función para buscar una palabra en un archivo.
+/*********************************************************************************
+ * 
+ * Nombre de la función: buscarPalabra
+ *
+ *
+ * Descripción de la función: Este metodo buscara la palabra facilitada por el usuario y 
+ * facilitando la palabra anterior y posterior
+ *
+ * Argumentos utilizados: 'ruta' ruta del archivo en el que buscaremos, 'palabra' sera la 
+ * palabra a buscar 'linea_inicial' sera la linea por la que empezara a buscar cada hilo 
+ * 'linea_final' sera la linea en la que termine la busqueda de palabras 'id_thread' 
+ * identificador del hilo
+ * 
+ * Valor de regreso: void (no retorna nada )
+ *
+*********************************************************************************/
 void buscarPalabra(std::string ruta, std::string palabra, int linea_inicial, int linea_final, int id_thread) {
 
     //Convertir palabra a minuscula
@@ -94,10 +124,22 @@ void buscarPalabra(std::string ruta, std::string palabra, int linea_inicial, int
             // Buscar la palabra en la línea
             int pos = 0;
             while ((pos = line_lower.find(palabra, pos)) != std::string::npos) {
+                
+               
+
+               
+
+                
                 std::string previous = getRelativeWord(linea, pos, false);  //Palabra anterior
                 std::string last = getRelativeWord(linea, pos, true);       //Palabra posterior
+
+                if (previous.empty() || previous==" ") {
+                   previous="no_word";
+                } else if(last.empty()|| last==" "){
+                    last="no_word";
+                }
                 
-                pos += palabra.length();    
+                pos += palabra.length();
 
                 Word word(id_thread,linea_inicial,linea_final, num_linea + 1, previous, last, pos); //Borrar el + 1 en caso de que sea necesario (linea 0 o linea 1)
                 
@@ -105,6 +147,7 @@ void buscarPalabra(std::string ruta, std::string palabra, int linea_inicial, int
                 std::unique_lock<std::shared_mutex> lock(buffer_mutex);
                 words_found.emplace_back(word);
                 lock.unlock();
+                
             }
             
         }

@@ -1,3 +1,15 @@
+/************************************************************************************
+*
+* Nombre: myfiles.h
+* 
+* Nombre de Autor/es:Adrian Carrasco Espinosa y Javier de la Concepcion Dorado 
+* 
+* Fecha de creación/actualización: 13/04/2023
+
+* Descripción: Tratamiento de ficheros
+
+************************************************************************************/
+
 #ifndef MYFILES_H
 #define MYFILES_H
 
@@ -7,7 +19,19 @@
 #include <iostream>
 #include <fstream>
 
-//Devuele un objeto tipo td::fstream, que representa un archivo abierto en modo lectura (std::ios::in)
+/*********************************************************************************
+ * 
+ * Nombre de la función: openFileRead
+ *
+ *
+ * Descripción de la función: Este metodo sera utilizado para abrir el archivo y en caso
+ * de error mostrarnos un mensaje
+ * 
+ * Argumentos utilizados: 'file_path' que sera la ruta del archivo
+ * 
+ * Valor de regreso: fstream retorna el descriptor del archivo
+ *
+*********************************************************************************/
 std::fstream openFileRead(std::string file_path) {
     std::fstream file;
     file.open(file_path, std::ios::in);
@@ -20,7 +44,19 @@ std::fstream openFileRead(std::string file_path) {
     return file;
 }
 
-//Devuelve el numero de lineas de un archivo
+/*********************************************************************************
+ * 
+ * Nombre de la función: countLines
+ *
+ *
+ * Descripción de la función: Este metodo sera utilizado para contar las lineas de
+ * un archivo
+ * 
+ * Argumentos utilizados: 'path' que sera la ruta del archivo
+ * 
+ * Valor de regreso: int retorna el numero de lineas
+ *
+*********************************************************************************/
 int countLines(std::string path) {
     std::fstream file;
     file.open(path, std::ios::in);
@@ -38,7 +74,21 @@ int countLines(std::string path) {
     return count;
 }
 
-//Devuelve la palabra adyacente la indicada en la posicion. La posicion de la palabra debe ser la primera letra que la compone
+/*********************************************************************************
+ * 
+ * Nombre de la función: getRelativeWord
+ *
+ *
+ * Descripción de la función: Devuelve la palabra adyacente la indicada en la posicion.
+ * La posicion de la palabra debe ser la primera letra que la compone
+ * 
+ * Argumentos utilizados: 'line' linea en la que se encuentra la palabra, 'pos' posicion 
+ * de la primera letra de la palabra, 'previous' booleano para saber si devolver la 
+ * antecesora o la predecesora
+ * 
+ * Valor de regreso: string retorna la palabra encontrada
+ *
+*********************************************************************************/
 std::string getRelativeWord(std::string line, int pos, bool previous)
 {
     bool end = false;
@@ -92,7 +142,19 @@ std::string getRelativeWord(std::string line, int pos, bool previous)
     
 }
 
-//Devuelve el contenido de la linea indicada de un fichero
+
+/*********************************************************************************
+ * 
+ * Nombre de la función: getLineByPosition
+ *
+ *
+ * Descripción de la función: Devuelve el contenido de la linea indicada de un fichero
+ * 
+ * Argumentos utilizados: 'path' ruta del archivo, 'position' entero indicando la posicion
+ * 
+ * Valor de regreso: string retorna la linea a la que pertence la posion
+ *
+*********************************************************************************/
 std::string getLineByPosition(std::string path, int position)
 {
     //Comprobamos si el fichero se abre
